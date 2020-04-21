@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this.getApplicationContext(),"Cảm ơn bạn đã sử dụng ứng dụng !",Toast.LENGTH_SHORT);
         toast.show();
 
-        Context context = this.getApplicationContext();
     }
 
     private void RegisterControlAndEvent(){
@@ -45,11 +44,15 @@ public class MainActivity extends AppCompatActivity {
                 int A = Integer.parseInt(txtA.getText().toString());
                 int B = Integer.parseInt(txtB.getText().toString());
                 int C = Integer.parseInt(txtC.getText().toString());
-                if(Fibonacci(A,B,C)) {
-                    lbKetQua.setText("--- Đây là dãy fibonacci ---");
+                if (!checkFibo(A))
+                    lbKetQua.setText("Số A bạn đã nhập không phái số thuộc dãy Fibonacci");
+                else if(!checkFibo(B))
+                    lbKetQua.setText("Số B bạn đã nhập không phải số thuộc dãy Fibonacci");
+                else if(Fibonacci(A,B,C)) {
+                    lbKetQua.setText("--- Ba số này là ứng cứ viên của dãy Fibonacci ---");
                 }
                 else
-                    lbKetQua.setText("--- Đây không phải dãy fibonacci ---");
+                    lbKetQua.setText("--- Ba số này không phải là ứng cứ viên của dãy Fibonacci ---");
 
             }
         });
@@ -61,5 +64,24 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    private boolean checkFibo( int ele ){
+        int fn1, fn2, fn;
+        fn1 = 0;
+        fn2 = 1;
+        if( ele == fn1 || ele == fn2 )
+            return true;
+        else{
+            while( true ){
+                fn = fn1 + fn2;
+                fn1 = fn2;
+                fn2 = fn;
+                if( ele == fn )
+                    return true;
+                if( ele < fn )
+                    return false;
+            }
+        }
     }
 }
