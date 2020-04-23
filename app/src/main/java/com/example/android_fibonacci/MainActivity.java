@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean checkFibo(int A,int B,int C){
         boolean checKA=false,checkB=false,checkC=false;
         int f[] = new int [100];
-        f[0] = 0;f[1]=1;
+        f[0] = -1;
+        f[1] = 1;
         for(int i=2;i<100;i++){
             f[i] = f[i-1]+f[i-2];
             if(f[i]<=C) {
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else break;
         }
-        if(checKA&&checkB&&checkC) return true;
+        if(checKA&&checkB&&checkC&& (C==A+B)) return true;
         else return false;
     }
     /*private boolean Fibonacci(int A,int B,int C){
