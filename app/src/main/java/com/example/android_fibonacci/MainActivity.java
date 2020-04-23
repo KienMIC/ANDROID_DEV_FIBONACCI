@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 int A = Integer.parseInt(txtA.getText().toString());
                 int B = Integer.parseInt(txtB.getText().toString());
                 int C = Integer.parseInt(txtC.getText().toString());
-                if (!checkFibo(A)&&!checkFibo(B))
+                /*if (!checkFibo(A)&&!checkFibo(B))
                     lbKetQua.setText("Cả hai số A và B không phải số thuộc dãy Fibonacci");
                 else if(!checkFibo(A))
                     lbKetQua.setText("Số A bạn đã nhập không phải số thuộc dãy Fibonacci");
@@ -54,14 +54,35 @@ public class MainActivity extends AppCompatActivity {
                     lbKetQua.setText("--- Ba số này là ứng cứ viên của dãy Fibonacci ---");
                 }
                 else
-                    lbKetQua.setText("--- Ba số này không phải là ứng cứ viên của dãy Fibonacci ---");
+                    lbKetQua.setText("--- Ba số này không phải là ứng cứ viên của dãy Fibonacci ---");*/
+                if(checkFibo(A,B,C)){
+                    lbKetQua.setText("Ba số vừa nhập là ứng cử viên của dãy Fibonacci");
+                }
+                else
+                    lbKetQua.setText("Ba số vừa nhập không phải ứng cử viên của dãy Fibonacci");
 
             }
         });
 
     }
 
-    private boolean Fibonacci(int A,int B,int C){
+    private boolean checkFibo(int A,int B,int C){
+        boolean checKA=false,checkB=false,checkC=false;
+        int f[] = new int [100];
+        f[0] = 0;f[1]=1;
+        for(int i=2;i<100;i++){
+            f[i] = f[i-1]+f[i-2];
+            if(f[i]<=C) {
+                if (f[i] == A) checKA = true;
+                if (f[i] == B) checkB = true;
+                if (f[i] == C) checkC = true;
+            }
+            else break;
+        }
+        if(checKA&&checkB&&checkC) return true;
+        else return false;
+    }
+    /*private boolean Fibonacci(int A,int B,int C){
         if(A+B == C){
             return true;
         }
@@ -85,5 +106,5 @@ public class MainActivity extends AppCompatActivity {
                     return false;
             }
         }
-    }
+    }*/
 }
