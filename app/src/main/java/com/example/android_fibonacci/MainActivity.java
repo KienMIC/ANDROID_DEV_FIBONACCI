@@ -44,8 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 int A = Integer.parseInt(txtA.getText().toString());
                 int B = Integer.parseInt(txtB.getText().toString());
                 int C = Integer.parseInt(txtC.getText().toString());
-                if (!checkFibo(A))
-                    lbKetQua.setText("Số A bạn đã nhập không phái số thuộc dãy Fibonacci");
+                if (!checkFibo(A)&&!checkFibo(B))
+                    lbKetQua.setText("Cả hai số A và B không phải số thuộc dãy Fibonacci");
+                else if(!checkFibo(A))
+                    lbKetQua.setText("Số A bạn đã nhập không phải số thuộc dãy Fibonacci");
                 else if(!checkFibo(B))
                     lbKetQua.setText("Số B bạn đã nhập không phải số thuộc dãy Fibonacci");
                 else if(Fibonacci(A,B,C)) {
